@@ -1,0 +1,24 @@
+projection;
+strict ( 1 );
+
+define behavior for Z_C_HEADER_0090 alias HeaderProcessor
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use action createSalesOrder;
+  use action cancelSalesOrder;
+  use action createSalesOrderAction;
+
+  use association _Items { create; }
+}
+
+define behavior for Z_C_ITEMS_0090 alias ItemsProcessor
+{
+  use update;
+  use delete;
+
+  use association _Header;
+}

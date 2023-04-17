@@ -1,0 +1,137 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+@UI: { 
+  headerInfo: {
+    typeName: 'Sales Order Item',
+    typeNamePlural: 'Sales Order Items',
+    title: {
+        type: #STANDARD,
+        //label: 'Sales Order Item',
+        value: 'ItemId'
+    },
+    description: {
+        value: 'Description'
+    }
+}
+}
+annotate view Z_C_ITEMS_0090
+    with 
+{
+@UI.facet: [{
+    id: 'Item',
+    purpose: #STANDARD,
+    position: 10,
+    label: 'Sales Order Item',
+    type: #IDENTIFICATION_REFERENCE
+}]
+
+@UI: {
+    lineItem: [{
+        position: 10,
+        exclude: true,
+        hidden: true,
+        importance: #HIGH,
+        label: 'Sales Order ID'
+    }],
+    identification: [{
+        position: 10,
+        label: 'Sales Order ID [1,...,99999999]'
+    }]
+}
+@Search.defaultSearchElement: true
+    HeaderId;
+    
+@UI: {
+    lineItem: [{ position: 20, importance: #HIGH, label: 'Item ID' }],
+    identification: [{ position: 20, label: 'Item ID' }],
+    selectionField: [{ position: 20 }]
+}    
+@Search.defaultSearchElement: true    
+    ItemId;
+    
+@UI: {
+    lineItem: [{ position: 30, importance: #HIGH, label: 'Product Name' }],
+    identification: [{ position: 30, label: 'Product Name' }]
+    /*selectionField: [{ position: 30 }]*/
+}    
+@Search.defaultSearchElement: true    
+    Name;
+    
+@UI: {
+    lineItem: [{ position: 40, importance: #HIGH, label: 'Description' }],
+    identification: [{ position: 40, label: 'Description' }]
+    /*selectionField: [{ position: 40 }]*/
+}    
+    Description;
+    
+@UI: {
+    lineItem: [{ position: 50, importance: #MEDIUM, label: 'Release Date' }],
+    identification: [{ position: 50, label: 'Release Date' }]
+}    
+    Releasedate;
+    
+@UI: {
+    lineItem: [{ position: 60, importance: #LOW, label: 'Discontinued Date' }],
+    identification: [{ position: 60, label: 'Discontinued Date' }]
+}   
+    Discontinueddate;
+    
+@UI: {
+    lineItem: [{ position: 70, importance: #HIGH, label: 'Price' }],
+    identification: [{ position: 70, label: 'Price' }]
+}    
+    Price;
+    
+/*@UI: {
+    lineItem: [{ position: 80, importance: #HIGH, label: 'Currency' }],
+    identification: [{ position: 80, label: 'Currency' }]
+}  
+*/
+@Consumption.valueHelpDefinition: [{ entity : {name: 'I_Currency', element: 'Currency' } }]
+    CurrencyCode;
+    
+@UI: {
+    lineItem: [{ position: 90, importance: #LOW, label: 'Height' }],
+    identification: [{ position: 90, label: 'Height' }]
+}   
+    Height;
+    
+@UI: {
+    lineItem: [{ position: 100, importance: #LOW, label: 'Width' }],
+    identification: [{ position: 100, label: 'Width' }]
+}    
+    Width;
+    
+@UI: {
+    lineItem: [{ position: 110, importance: #LOW, label: 'Depth' }],
+    identification: [{ position: 110, label: 'Depth' }]
+}     
+    Depth;
+    
+/*@UI: {
+    lineItem: [{ position: 120, importance: #MEDIUM, label: 'UofM' }],
+    identification: [{ position: 120, label: 'UofM' }]
+}*/
+@Consumption.valueHelpDefinition: [{ entity : {name: 'I_UnitOfMeasure', element: 'UnitOfMeasure' } }]
+    Unitofmeasure2;
+    
+@UI: {
+    lineItem: [{ position: 130, importance: #HIGH, label: 'Quantity' }],
+    identification: [{ position: 130, label: 'Quantity' }]
+}   
+    Quantity;
+    
+/*@UI: {
+    lineItem: [{ position: 140, importance: #HIGH, label: 'UofM Q' }],
+    identification: [{ position: 140, label: 'UofM Q' }]
+}*/
+@Consumption.valueHelpDefinition: [{ entity : {name: 'I_UnitOfMeasure', element: 'UnitOfMeasure' } }]
+    Unitofmeasure;
+    
+    /* Associations */
+    /*_Currency;
+    _Header;
+    _UnitOfMeasure;
+    _UnitOfMeasure2;*/
+    
+}

@@ -1,0 +1,7 @@
+@EndUserText.label: 'Service Definition - Header'
+define service ZSD_HEADER_0090 {
+  expose Z_C_HEADER_0090 as Header;
+  expose Z_C_ITEMS_0090 as Items;
+  expose I_Currency as Currency;
+  expose I_UnitOfMeasure as UnitOfMeasure;
+}

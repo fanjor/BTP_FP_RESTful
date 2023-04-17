@@ -1,0 +1,135 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+@UI: { 
+  headerInfo: {
+    typeName: 'Sales Order',
+    typeNamePlural: 'Sales Orders',
+    title: {
+        type: #STANDARD,
+        value: 'HeaderId'
+    },
+    description: {
+        value: 'Lastname'
+    }
+}
+}
+annotate view Z_C_HEADER_0090
+    with 
+{
+@UI.facet: [{
+    id: 'Header',
+    purpose: #STANDARD,
+    position: 10,
+    label: 'Sales Order',
+    type: #IDENTIFICATION_REFERENCE },
+    {
+    id: 'Items',
+    purpose: #STANDARD,
+    position: 20,
+    label: 'Sales Order Items',
+    type: #LINEITEM_REFERENCE,
+    targetElement: '_Items'
+}]
+
+@UI: {
+    lineItem: [{
+        position: 10,
+        /*exclude: true,
+        hidden: true,*/
+        importance: #HIGH,
+        label: 'Sales Order ID'
+    }],
+    identification: [{
+        position: 10,
+        label: 'Sales Order ID [1,...,99999999]'
+    }],
+    selectionField: [{ position: 10 }]
+}
+@EndUserText.label: 'Sales Order ID'
+//@Consumption.valueHelpDefinition: [{entity: {name: 'ZHEADER_0090', element: 'header_id' }}]
+@Search.defaultSearchElement: true
+    HeaderId;
+
+@UI: {
+    lineItem: [{ position: 20, importance: #HIGH, label: 'Email' }],
+    identification: [{ position: 20, label: 'Email' }]
+    /*selectionField: [{ position: 20 }]*/
+}    
+    Email;
+    
+@UI: {
+    lineItem: [{ position: 30, importance: #HIGH, label: 'First Name' }],
+    identification: [{ position: 30, label: 'First Name' }],
+    selectionField: [{ position: 20 }]
+}    
+@EndUserText.label: 'First Name' 
+@Search.defaultSearchElement: true
+    Firstname;
+    
+@UI: {
+    lineItem: [{ position: 40, importance: #HIGH, label: 'Last Name' }],
+    identification: [{ position: 40, label: 'Last Name' }],
+    selectionField: [{ position: 30 }]
+}     
+@EndUserText.label: 'Last Name'
+@Search.defaultSearchElement: true
+    Lastname;
+    
+@UI: {
+    lineItem: [{ position: 50, importance: #HIGH, label: 'Country Code' }],
+    identification: [{ position: 50, label: 'Country Code' }],
+    selectionField: [{ position: 40 }]
+}
+@Consumption.valueHelpDefinition: [{entity: {name: 'I_Country', element: 'Country' }}]
+@Search.defaultSearchElement: true
+    Country;
+    
+@UI: {
+    lineItem: [{ position: 60, importance: #LOW, label: 'Country Name' }],
+    identification: [{ position: 60, label: 'Country Name' }]
+}     
+    CountryShortName;
+    
+@UI: {
+    lineItem: [{ position: 70, importance: #MEDIUM, label: 'Create Date' }],
+    identification: [{ position: 70, label: 'Create Date' }]
+}     
+    Createon;
+    
+@UI: {
+    lineItem: [{ position: 80, importance: #LOW, label: 'Delivery Date' }],
+    identification: [{ position: 80, label: 'Delivery Date' }]
+}     
+    Deliverydate;
+    
+@UI: {
+    /*lineItem: [{ position: 90, importance: #HIGH, label: 'Status' },
+    { type: #FOR_ACTION, dataAction: 'createSO', label: 'Create Sales Order' },
+    { type: #FOR_ACTION, dataAction: 'cancelSO', label: 'Cancel Sales Order' } ],
+    identification: [{ position: 90, label: 'Status [1(Active)| 0(Canceled)]' }] */
+    
+    lineItem: [{ position: 90, importance: #HIGH }/*,
+    { type: #FOR_ACTION, dataAction: 'createSalesOrder', label: 'Create Sales Order by Template' },
+    { type: #FOR_ACTION, dataAction: 'cancelSalesOrder', label: 'Cancel Sales Order' }*/ ],
+    identification: [{ position: 90 }/*,
+    { type: #FOR_ACTION, dataAction: 'createSalesOrder', label: 'Create Sales Order by Template' },
+    { type: #FOR_ACTION, dataAction: 'cancelSalesOrder', label: 'Cancel Sales Order' }*/ ]
+    /*selectionField: [{ position: 20 }]*/
+}  
+@EndUserText.label: 'Status'   
+@Search.defaultSearchElement: true
+    Orderstatus;     
+    
+/*@UI: {
+    lineItem: [{ position: 100, importance: #LOW }],
+    identification: [{ position: 100, label: 'Image' }]
+} */   
+@EndUserText.label: 'Image URL'
+//@UI.hidden: true
+    Imageurl;
+    
+    /* Associations */
+    /*_CountryText;
+    _Items;*/
+    
+}

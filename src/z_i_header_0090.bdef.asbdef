@@ -1,0 +1,79 @@
+managed; // implementation in class zbp_i_header_0090 unique;
+strict ( 1 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for Z_I_HEADER_0090 alias Header
+implementation in class ZBP_I_HEADER_0090 unique
+persistent table zheader_0090
+lock master
+authorization master ( instance )
+etag master Createon
+{
+  create;
+  update;
+  delete;
+
+  action createSalesOrder;
+  action cancelSalesOrder;
+
+  //field ( readonly ) Createon;
+  field ( readonly:update ) HeaderId;
+  field ( mandatory:create ) Email;
+  field ( features : instance ) Orderstatus;  //HeaderId,
+
+  validation validateHeaderId on save { field HeaderId; }
+  validation validateEmail    on save { field Email; }
+
+  association _Items { create ( features : instance ); }
+
+  action createSalesOrderAction result[1] $self;
+
+  mapping for zheader_0090 {
+    HeaderId     = header_id;
+    Email        = email;
+    Firstname    = firstname;
+    Lastname     = lastname;
+    Country      = country;
+    Createon     = createon;
+    Deliverydate = deliverydate;
+    Orderstatus  = orderstatus;
+    Imageurl     = imageurl;
+  }
+}
+
+//------------
+
+define behavior for Z_I_ITEMS_0090 alias Items
+implementation in class ZBP_I_ITEMS_0090 unique
+persistent table zitems_0090
+lock dependent by _Header
+authorization dependent by _Header
+etag master ItemId
+{
+  update;
+  delete;
+
+  field ( readonly:update ) HeaderId;
+  //field ( mandatory ) ItemId;
+  field ( mandatory:create ) ItemId;
+
+  validation validateItemId on save { field ItemId; }
+
+  association _Header;
+
+  mapping for zitems_0090 {
+    HeaderId         = header_id;
+    ItemId           = item_id;
+    Name             = name;
+    Description      = description;
+    Releasedate      = releasedate;
+    Discontinueddate = discontinueddate;
+    Price            = price;
+    CurrencyCode     = currency_code;
+    Height           = height;
+    Width            = width;
+    Depth            = depth;
+    Unitofmeasure2   = unitofmeasure2;
+    Quantity         = quantity;
+    Unitofmeasure    = unitofmeasure;
+  }
+}
